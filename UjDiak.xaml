@@ -1,0 +1,50 @@
+﻿<Window x:Class="felveteli.UjDiak"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:felveteli"
+        mc:Ignorable="d"
+        Title="UjDiak" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" Content="OM Azonosító" FontSize="20px"  HorizontalContentAlignment="Right"/>
+        <Label Grid.Row="1" Content="Név" FontSize="20px"  HorizontalContentAlignment="Right"/>
+        <Label Grid.Row="2" Content="Értesítési Cím" FontSize="20px"  HorizontalContentAlignment="Right"/>
+        <Label Grid.Row="3" Content="Születési Dátum" FontSize="20px"  HorizontalContentAlignment="Right"/>
+        <Label Grid.Row="4" Content="Elérhetőség Email" FontSize="20px"  HorizontalContentAlignment="Right"/>
+        <Label Grid.Row="5" Content="Matek Pontszám" FontSize="20px"  HorizontalContentAlignment="Right"/>
+        <Label Grid.Row="6" Content="Magyar Pontszám" FontSize="20px"  HorizontalContentAlignment="Right"/>
+        <Label Grid.Row="7" Content="Telefon" FontSize="20px"  HorizontalContentAlignment="Right"/>
+        <Label Grid.Row="8" Content="Iskola" FontSize="20px"  HorizontalContentAlignment="Right"/>
+        <Label Grid.Row="9" Content="Könnyítés" FontSize="20px"  HorizontalContentAlignment="Right"/>
+
+        <TextBox Width="250px" x:Name="txbOMAzonosito" Grid.Row="0" Grid.Column="1" FontSize="20px" HorizontalAlignment="Left"/>
+        <TextBox Width="250px" x:Name="txbNev" Grid.Row="1" Grid.Column="1" FontSize="20px" HorizontalAlignment="Left"/>
+        <TextBox Width="250px" x:Name="txbErtesiteiCim" Grid.Row="2" Grid.Column="1" FontSize="20px" HorizontalAlignment="Left"/>
+        <TextBox Width="250px" x:Name="txbSzuletesiDatum" Grid.Row="3" Grid.Column="1" FontSize="20px" HorizontalAlignment="Left"/>
+        <TextBox Width="250px" x:Name="txbElerhetosegEmail" Grid.Row="4" Grid.Column="1" FontSize="20px" HorizontalAlignment="Left"/>
+        <TextBox Width="250px" x:Name="txbMatekPontszam" Grid.Row="5" Grid.Column="1" FontSize="20px" HorizontalAlignment="Left"/>
+        <TextBox Width="250px" x:Name="txbMagyarPontszam" Grid.Row="6" Grid.Column="1" FontSize="20px" HorizontalAlignment="Left"/>
+        <TextBox Width="250px" x:Name="txbTelefon" Grid.Row="7" Grid.Column="1" FontSize="20px" HorizontalAlignment="Left"/>
+        <TextBox Width="250px" x:Name="txbIskola" Grid.Row="8" Grid.Column="1" FontSize="20px" HorizontalAlignment="Left"/>
+        <TextBox Width="250px" x:Name="txbKonnyites" Grid.Row="9" Grid.Column="1" FontSize="20px" HorizontalAlignment="Left"/>
+        <Button Margin="2px" Content="Mentés" FontSize="20px" Grid.Row="10" Grid.ColumnSpan="2" Width="200px" Click="Button_Click"/>
+    </Grid>
+</Window>
