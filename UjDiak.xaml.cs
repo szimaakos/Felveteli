@@ -20,47 +20,53 @@ namespace felveteli
     /// 
     public partial class UjDiak : Window
     {
-        public UjDiak(Transport move)
+        bool isClosing = false;
+        Adat newMove;
+        public UjDiak(Adat move)
         {
+            newMove = move;
             InitializeComponent();
-            move.OMAzonosito = txbOMAzonosito.Text;
-            move.Nev = txbNev.Text;
-            move.ErtesitesiCim = txbErtesiteiCim.Text;
-            move.SzuletesiDatum = txbSzuletesiDatum.Text;
-            move.ElerhetosegEmail = txbElerhetosegEmail.Text;
-            try
-            {
-                move.MagyarPontszam = int.Parse(txbMagyarPontszam.Text);
 
-            }
-            catch (Exception)
-            {
-                move.MagyarPontszam = -1;
-            }
-            try
-            {
-                move.MatekPontszam = int.Parse(txbMatekPontszam.Text);
 
-            }
-            catch (Exception)
-            {
-                move.MatekPontszam = -1;
-            }
-            move.Telefon = txbTelefon.Text;
-            move.Iskola = txbIskola.Text;
-            try
-            {
-                move.Konnyites = byte.Parse(txbKonnyites.Text);
-
-            }
-            catch (Exception)
-            {
-                move.Konnyites = 0;
-            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            newMove.OMAzonosito = txbOMAzonosito.Text;
+            newMove.Nev = txbNev.Text;
+            newMove.ErtesitesiCim = txbErtesiteiCim.Text;
+            newMove.SzuletesiDatum = txbSzuletesiDatum.Text;
+            newMove.ElerhetosegEmail = txbElerhetosegEmail.Text;
+            try
+            {
+                newMove.MagyarPontszam = int.Parse(txbMagyarPontszam.Text);
+
+            }
+            catch (Exception)
+            {
+                newMove.MagyarPontszam = -1;
+            }
+            try
+            {
+                newMove.MatekPontszam = int.Parse(txbMatekPontszam.Text);
+
+            }
+            catch (Exception)
+            {
+                newMove.MatekPontszam = -1;
+            }
+            newMove.Telefon = txbTelefon.Text;
+            newMove.Iskola = txbIskola.Text;
+            try
+            {
+                newMove.Konnyites = byte.Parse(txbKonnyites.Text);
+
+            }
+            catch (Exception)
+            {
+                newMove.Konnyites = 0;
+
+            }
             Close();
         }
     }

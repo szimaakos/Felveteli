@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
+using Microsoft.Win32;
+using System.Collections.ObjectModel;
 
 namespace felveteli
 {
@@ -22,58 +24,78 @@ namespace felveteli
     public partial class MainWindow : Window
     {
         List<string> betolt = new();
-        List<Transform> transforms = new();
-        
-            
-        private Transport transport ;
+        ObservableCollection<Adat> transforms = new();
+
+
+        private Adat transport;
 
         public MainWindow()
         {
             InitializeComponent();
 
-            using(StreamReader sr = new StreamReader("felveteli.csv"))
-            {
-
-            }
-
-
+            LoadElements("felveteli.csv");
+            
+            dtgFelveteli.ItemsSource = transforms;
 
         }
 
         private void btnUjDiak_Click(object sender, RoutedEventArgs e)
         {
 
-            transport =new Transport();
-            UjDiak ujDiak = new UjDiak(transport);
+            transport = new();
+            UjDiak ujDiak = new(transport);
             ujDiak.ShowDialog();
+            transforms.Add(transport);
 
         }
 
         private void btnTorles_Click(object sender, RoutedEventArgs e)
         {
-            if (dtgFelveteli.SelectedItem != null)
+            try
             {
-                dtgFelveteli.Items.Remove(dtgFelveteli.SelectedItem);
+                dtgFelveteli.Items.RemoveAt(dtgFelveteli.SelectedIndex);
+
             }
+            catch (Exception)
+            {
+
+            }
+            
 
         }
 
         private void btnImport_Click(object sender, RoutedEventArgs e)
         {
-
+            OpenFileDialog ofd = new();
+            ofd.ShowDialog();
         }
 
         private void btnExport_Click(object sender, RoutedEventArgs e)
         {
+            List<string> exportLista = new();
+            SaveFileDialog sfd = new();
+            sfd.ShowDialog();
+            foreach (var item in transforms)
+            {
+                string exportString = $"{item.OMAzonosito};{item.Nev};{item.ErtesitesiCim};{item.SzuletesiDatum};{item.ElerhetosegEmail};{item.MatekPontszam};{item.MagyarPontszam};{item.MatekPontszam};{item.Telefon};{item.Iskola};{item.Konnyites}";
+                exportLista.Add(exportString);
+            }
 
         }
-        public void LoadElements()
+        public void LoadElements(string fileNev)
         {
-
-            foreach (var item in betolt)
+            using (StreamReader sr = new StreamReader(fileNev))
             {
-                
+                while (!sr.EndOfStream)
+                {
+                    string sor = sr.ReadLine();
+                    Adat s = new(sor);
+                    transforms.Add(s);
+
+                }
             }
+
+
         }
     }
 }
