@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.IO;
 using Microsoft.Win32;
 using System.Collections.ObjectModel;
+using System.Security.Cryptography;
 
 namespace felveteli
 {
@@ -23,8 +24,9 @@ namespace felveteli
     /// </summary>
     public partial class MainWindow : Window
     {
-        List<string> betolt = new();
         ObservableCollection<Adat> transforms = new();
+
+        int selectedItemIndex;
 
 
         private Adat transport;
@@ -33,9 +35,12 @@ namespace felveteli
         {
             InitializeComponent();
 
+
+
+            //dtgFelveteli.ItemsSource = transforms;
+
             LoadElements("felveteli.csv");
-            
-            dtgFelveteli.ItemsSource = transforms;
+
 
         }
 
@@ -53,49 +58,67 @@ namespace felveteli
         {
             try
             {
-                dtgFelveteli.Items.RemoveAt(dtgFelveteli.SelectedIndex);
-
+                transforms.RemoveAt(dtgFelveteli.SelectedIndex);
             }
             catch (Exception)
             {
 
             }
-            
+
 
         }
 
         private void btnImport_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog ofd = new();
-            ofd.ShowDialog();
+            ofd.Filter = "Comma Separated Lines (*.csv)|*.csv";
+            ofd.DefaultExt = "csv";
+            ofd.AddExtension = true;
+            if (ofd.ShowDialog() == true)
+            {
+                LoadElements(ofd.FileName);
+
+            }
         }
 
         private void btnExport_Click(object sender, RoutedEventArgs e)
         {
             List<string> exportLista = new();
             SaveFileDialog sfd = new();
-            sfd.ShowDialog();
-            foreach (var item in transforms)
+            sfd.Filter = "Comma Separated Lines (*.csv)|*.csv";
+            sfd.DefaultExt = "csv";
+            sfd.AddExtension = true;
+            if (sfd.ShowDialog() == true)
             {
-                string exportString = $"{item.OMAzonosito};{item.Nev};{item.ErtesitesiCim};{item.SzuletesiDatum};{item.ElerhetosegEmail};{item.MatekPontszam};{item.MagyarPontszam};{item.MatekPontszam};{item.Telefon};{item.Iskola};{item.Konnyites}";
-                exportLista.Add(exportString);
+                foreach (var item in transforms)
+                {
+                    string exportString = $"{item.OMAzonosito};{item.Nev};{item.ErtesitesiCim};{item.SzuletesiDatum};{item.ElerhetosegEmail};{item.MatekPontszam};{item.MagyarPontszam};{item.MatekPontszam};{item.Telefon};{item.Iskola};{item.Konnyites}";
+                    exportLista.Add(exportString);
+                }
+                File.WriteAllLines(sfd.FileName, exportLista);
             }
+
 
         }
         public void LoadElements(string fileNev)
         {
+            
             using (StreamReader sr = new StreamReader(fileNev))
             {
                 while (!sr.EndOfStream)
                 {
                     string sor = sr.ReadLine();
-                    Adat s = new(sor);
-                    transforms.Add(s);
+                    if (sor.Split(';').Length > 8 && sor.Split(';')[1] != "")
+                    {
+                        Adat s = new(sor);
+                        transforms.Add(s);
+                    }
 
                 }
             }
 
 
         }
+
     }
 }
