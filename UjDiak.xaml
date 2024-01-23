@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:felveteli"
         mc:Ignorable="d"
-        Title="UjDiak" Height="450" Width="800">
+        Title="UjDiak" Height="500" Width="800" ResizeMode="NoResize">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -35,16 +35,16 @@
         <Label Grid.Row="8" Content="Iskola" FontSize="20px"  HorizontalContentAlignment="Right"/>
         <Label Grid.Row="9" Content="Könnyítés" FontSize="20px"  HorizontalContentAlignment="Right"/>
 
-        <TextBox Width="250px" Margin="5px" x:Name="txbOMAzonosito" Grid.Row="0" Grid.Column="1" FontSize="20px" HorizontalAlignment="Left"/>
-        <TextBox Width="250px" Margin="5px" x:Name="txbNev" Grid.Row="1" Grid.Column="1" FontSize="20px" HorizontalAlignment="Left"/>
-        <TextBox Width="250px" Margin="5px" x:Name="txbErtesiteiCim" Grid.Row="2" Grid.Column="1" FontSize="20px" HorizontalAlignment="Left"/>
-        <TextBox Width="250px" Margin="5px" x:Name="txbSzuletesiDatum" Grid.Row="3" Grid.Column="1" FontSize="20px" HorizontalAlignment="Left"/>
-        <TextBox Width="250px" Margin="5px" x:Name="txbElerhetosegEmail" Grid.Row="4" Grid.Column="1" FontSize="20px" HorizontalAlignment="Left"/>
-        <TextBox Width="250px" Margin="5px" x:Name="txbMatekPontszam" Grid.Row="5" Grid.Column="1" FontSize="20px" HorizontalAlignment="Left"/>
-        <TextBox Width="250px" Margin="5px" x:Name="txbMagyarPontszam" Grid.Row="6" Grid.Column="1" FontSize="20px" HorizontalAlignment="Left"/>
-        <TextBox Width="250px" Margin="5px" x:Name="txbTelefon" Grid.Row="7" Grid.Column="1" FontSize="20px" HorizontalAlignment="Left"/>
-        <TextBox Width="250px" Margin="5px" x:Name="txbIskola" Grid.Row="8" Grid.Column="1" FontSize="20px" HorizontalAlignment="Left"/>
-        <TextBox Width="250px" Margin="5px" x:Name="txbKonnyites" Grid.Row="9" Grid.Column="1" FontSize="20px" HorizontalAlignment="Left"/>
+        <TextBox  Width="250px" Margin="5px" x:Name="txbOMAzonosito" Grid.Row="0" Grid.Column="1" FontSize="20px" HorizontalAlignment="Left" KeyUp="KeyUp" />
+        <TextBox KeyUp="KeyUp" Width="250px" Margin="5px" x:Name="txbNev" Grid.Row="1" Grid.Column="1" FontSize="20px" HorizontalAlignment="Left"/>
+        <TextBox KeyUp="KeyUp" Width="250px" Margin="5px" x:Name="txbErtesiteiCim" Grid.Row="2" Grid.Column="1" FontSize="20px" HorizontalAlignment="Left"/>
+        <TextBox KeyUp="KeyUp" Width="250px" Margin="5px" x:Name="txbSzuletesiDatum" Grid.Row="3" Grid.Column="1" FontSize="20px" HorizontalAlignment="Left"/>
+        <TextBox KeyUp="KeyUp" Width="250px" Margin="5px" x:Name="txbElerhetosegEmail" Grid.Row="4" Grid.Column="1" FontSize="20px" HorizontalAlignment="Left"/>
+        <TextBox KeyUp="KeyUp" Width="250px" Margin="5px" x:Name="txbMatekPontszam" Grid.Row="5" Grid.Column="1" FontSize="20px" HorizontalAlignment="Left"/>
+        <TextBox KeyUp="KeyUp" Width="250px" Margin="5px" x:Name="txbMagyarPontszam" Grid.Row="6" Grid.Column="1" FontSize="20px" HorizontalAlignment="Left"/>
+        <TextBox KeyUp="KeyUp" Width="250px" Margin="5px" x:Name="txbTelefon" Grid.Row="7" Grid.Column="1" FontSize="20px" HorizontalAlignment="Left"/>
+        <TextBox KeyUp="KeyUp" Width="250px" Margin="5px" x:Name="txbIskola" Grid.Row="8" Grid.Column="1" FontSize="20px" HorizontalAlignment="Left"/>
+        <TextBox KeyUp="KeyUp" Width="250px" Margin="5px" x:Name="txbKonnyites" Grid.Row="9" Grid.Column="1" FontSize="20px" HorizontalAlignment="Left"/>
         <Button Margin="2px" Content="Mentés" FontSize="20px" Grid.Row="10" Grid.ColumnSpan="2" Width="200px" Click="Button_Click"/>
     </Grid>
 </Window>

@@ -61,7 +61,7 @@ namespace felveteli
                 this.konnyites = 0;
             }
         }
-
+        
         public string OMAzonosito { get => oMAzonosito; set => oMAzonosito = value; }
         public string Nev { get => nev; set => nev = value; }
         public string ErtesitesiCim { get => ertesitesiCim; set => ertesitesiCim = value; }
@@ -72,5 +72,24 @@ namespace felveteli
         public string Telefon { get => telefon; set => telefon = value; }
         public string Iskola { get => iskola; set => iskola = value; }
         public byte Konnyites { get => konnyites; set => konnyites = value; }
+
+        /*
+        public string OM_Azonosito { get => oMAzonosito; set => oMAzonosito = value; }
+        public string Neve { get => nev; set => nev = value; }
+        public string ErtesitesiCime { get => ertesitesiCim; set => ertesitesiCim = value; }
+        public string Email { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public int Matematika { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public int Magyar { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        DateTime IFelvetelizo.SzuletesiDatum { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
+        public string CSVSortAdVissza()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ModositCSVSorral(string csvString)
+        {
+            throw new NotImplementedException();
+        }*/
     }
 }

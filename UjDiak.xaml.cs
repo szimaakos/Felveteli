@@ -24,10 +24,35 @@ namespace felveteli
         Adat newMove;
         public UjDiak(Adat move)
         {
+            bool uresE = false;
+            if (move.Nev == null)
+            {
+                uresE = true;
+            }
             newMove = move;
             InitializeComponent();
+            txbOMAzonosito.Text = newMove.OMAzonosito;
+            txbNev.Text = newMove.Nev;
+            txbErtesiteiCim.Text = newMove.ErtesitesiCim;
+            txbSzuletesiDatum.Text = newMove.SzuletesiDatum;
+            txbElerhetosegEmail.Text = newMove.ElerhetosegEmail;
+            if (!uresE)
+            {
+                txbMagyarPontszam.Text = newMove.MagyarPontszam.ToString();
 
+            }
+            if (!uresE)
+            {
+                txbMatekPontszam.Text = newMove.MatekPontszam.ToString();
 
+            }
+            txbTelefon.Text = newMove.Telefon;
+            txbIskola.Text = newMove.Iskola;
+            if (!uresE)
+            {
+                txbKonnyites.Text = newMove.Konnyites.ToString();
+
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -69,5 +94,19 @@ namespace felveteli
             }
             Close();
         }
+
+        private void KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                Button_Click(sender, e);
+            }
+        }
+        /*
+        public override void OnClosing(object sender)
+        {
+            e.Cancel = true;
+            base.OnClosing(sender, e);
+        }*/
     }
 }

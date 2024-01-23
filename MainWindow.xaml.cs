@@ -16,6 +16,8 @@ using System.IO;
 using Microsoft.Win32;
 using System.Collections.ObjectModel;
 using System.Security.Cryptography;
+using System.Text.Json;
+using System.Text.Encodings.Web;
 
 namespace felveteli
 {
@@ -24,7 +26,7 @@ namespace felveteli
     /// </summary>
     public partial class MainWindow : Window
     {
-        ObservableCollection<Adat> transforms = new();
+        ObservableCollection<Adat> felvetelizok = new();
 
         int selectedItemIndex;
 
@@ -37,7 +39,7 @@ namespace felveteli
 
 
 
-            //dtgFelveteli.ItemsSource = transforms;
+            dtgFelveteli.ItemsSource = felvetelizok;
 
             LoadElements("felveteli.csv");
 
@@ -50,7 +52,10 @@ namespace felveteli
             transport = new();
             UjDiak ujDiak = new(transport);
             ujDiak.ShowDialog();
-            transforms.Add(transport);
+            if (transport.Nev != null)
+            {
+                felvetelizok.Add(transport);
+            }
 
         }
 
@@ -58,7 +63,7 @@ namespace felveteli
         {
             try
             {
-                transforms.RemoveAt(dtgFelveteli.SelectedIndex);
+                felvetelizok.RemoveAt(dtgFelveteli.SelectedIndex);
             }
             catch (Exception)
             {
@@ -76,33 +81,63 @@ namespace felveteli
             ofd.AddExtension = true;
             if (ofd.ShowDialog() == true)
             {
-                LoadElements(ofd.FileName);
+                if (MessageBox.Show("Felülíja a meglévő adatokat?", "Felülírás", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
+                    felvetelizok.Clear();
+                    LoadElements(ofd.FileName);
+                }
+                else
+                {
+
+                    LoadElements(ofd.FileName);
+                }
 
             }
         }
 
         private void btnExport_Click(object sender, RoutedEventArgs e)
         {
+
             List<string> exportLista = new();
             SaveFileDialog sfd = new();
-            sfd.Filter = "Comma Separated Lines (*.csv)|*.csv";
+            sfd.Filter = "Comma Separated Lines (*.csv)|*.csv|JavaScript Object Notation (*.json)|*.json";
             sfd.DefaultExt = "csv";
             sfd.AddExtension = true;
             if (sfd.ShowDialog() == true)
             {
-                foreach (var item in transforms)
+
+                if (System.IO.Path.GetExtension(sfd.FileName).Trim() == ".csv")
                 {
-                    string exportString = $"{item.OMAzonosito};{item.Nev};{item.ErtesitesiCim};{item.SzuletesiDatum};{item.ElerhetosegEmail};{item.MatekPontszam};{item.MagyarPontszam};{item.MatekPontszam};{item.Telefon};{item.Iskola};{item.Konnyites}";
-                    exportLista.Add(exportString);
+
+                    foreach (var item in felvetelizok)
+                    {
+                        string exportString = $"{item.OMAzonosito};{item.Nev};{item.ErtesitesiCim};{item.SzuletesiDatum};{item.ElerhetosegEmail};{item.MatekPontszam};{item.MagyarPontszam};{item.MatekPontszam};{item.Telefon};{item.Iskola};{item.Konnyites}";
+                        exportLista.Add(exportString);
+
+                    }
+                    File.WriteAllLines(sfd.FileName, exportLista);
                 }
-                File.WriteAllLines(sfd.FileName, exportLista);
+                else if (System.IO.Path.GetExtension(sfd.FileName).Trim() == ".json")
+                {
+
+                    var opciok = new JsonSerializerOptions();
+                    opciok.Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping;
+                    opciok.WriteIndented = true;
+
+                    string adatokSorai = JsonSerializer.Serialize(felvetelizok, opciok);
+
+                    var lista = new List<String>();
+                    lista.Add(adatokSorai);
+                    File.WriteAllLines(sfd.FileName, lista);
+                }
+
             }
 
 
         }
         public void LoadElements(string fileNev)
         {
-            
+
             using (StreamReader sr = new StreamReader(fileNev))
             {
                 while (!sr.EndOfStream)
@@ -111,7 +146,7 @@ namespace felveteli
                     if (sor.Split(';').Length > 8 && sor.Split(';')[1] != "")
                     {
                         Adat s = new(sor);
-                        transforms.Add(s);
+                        felvetelizok.Add(s);
                     }
 
                 }
@@ -120,5 +155,18 @@ namespace felveteli
 
         }
 
+        private void btnModosit_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                int index = dtgFelveteli.SelectedIndex;
+                transport = felvetelizok[index];
+                UjDiak ujDiak = new(transport);
+                ujDiak.ShowDialog();
+                felvetelizok.RemoveAt(index);
+                
+            }
+            catch { }
+        }
     }
 }
