@@ -38,7 +38,8 @@
         <TextBox  Width="250px" Margin="5px" x:Name="txbOMAzonosito" Grid.Row="0" Grid.Column="1" FontSize="20px" HorizontalAlignment="Left" KeyUp="KeyUp" />
         <TextBox KeyUp="KeyUp" Width="250px" Margin="5px" x:Name="txbNev" Grid.Row="1" Grid.Column="1" FontSize="20px" HorizontalAlignment="Left"/>
         <TextBox KeyUp="KeyUp" Width="250px" Margin="5px" x:Name="txbErtesiteiCim" Grid.Row="2" Grid.Column="1" FontSize="20px" HorizontalAlignment="Left"/>
-        <TextBox KeyUp="KeyUp" Width="250px" Margin="5px" x:Name="txbSzuletesiDatum" Grid.Row="3" Grid.Column="1" FontSize="20px" HorizontalAlignment="Left"/>
+        
+        <DatePicker  KeyUp="KeyUp" Width="250px" Margin="5px" x:Name="txbSzuletesiDatum" Grid.Row="3" Grid.Column="1" FontSize="20px" HorizontalAlignment="Left"/>
         <TextBox KeyUp="KeyUp" Width="250px" Margin="5px" x:Name="txbElerhetosegEmail" Grid.Row="4" Grid.Column="1" FontSize="20px" HorizontalAlignment="Left"/>
         <TextBox KeyUp="KeyUp" Width="250px" Margin="5px" x:Name="txbMatekPontszam" Grid.Row="5" Grid.Column="1" FontSize="20px" HorizontalAlignment="Left"/>
         <TextBox KeyUp="KeyUp" Width="250px" Margin="5px" x:Name="txbMagyarPontszam" Grid.Row="6" Grid.Column="1" FontSize="20px" HorizontalAlignment="Left"/>

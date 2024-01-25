@@ -52,7 +52,7 @@ namespace felveteli
             transport = new();
             UjDiak ujDiak = new(transport);
             ujDiak.ShowDialog();
-            if (transport.Nev != null)
+            if (transport.Neve != null)
             {
                 felvetelizok.Add(transport);
             }
@@ -63,7 +63,15 @@ namespace felveteli
         {
             try
             {
+                if (dtgFelveteli.SelectedItems.Count==1)
+                {
                 felvetelizok.RemoveAt(dtgFelveteli.SelectedIndex);
+                    
+                }
+                else
+                {
+                    
+                }
             }
             catch (Exception)
             {
@@ -111,8 +119,7 @@ namespace felveteli
 
                     foreach (var item in felvetelizok)
                     {
-                        string exportString = $"{item.OMAzonosito};{item.Nev};{item.ErtesitesiCim};{item.SzuletesiDatum};{item.ElerhetosegEmail};{item.MatekPontszam};{item.MagyarPontszam};{item.MatekPontszam};{item.Telefon};{item.Iskola};{item.Konnyites}";
-                        exportLista.Add(exportString);
+                        exportLista.Add(item.CSVSortAdVissza());
 
                     }
                     File.WriteAllLines(sfd.FileName, exportLista);
@@ -164,6 +171,7 @@ namespace felveteli
                 UjDiak ujDiak = new(transport);
                 ujDiak.ShowDialog();
                 felvetelizok.RemoveAt(index);
+                felvetelizok.Insert(index,transport);
                 
             }
             catch { }

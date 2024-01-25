@@ -25,25 +25,30 @@ namespace felveteli
         public UjDiak(Adat move)
         {
             bool uresE = false;
-            if (move.Nev == null)
+            if (move.OM_Azonosito == null)
             {
                 uresE = true;
             }
             newMove = move;
             InitializeComponent();
-            txbOMAzonosito.Text = newMove.OMAzonosito;
-            txbNev.Text = newMove.Nev;
-            txbErtesiteiCim.Text = newMove.ErtesitesiCim;
-            txbSzuletesiDatum.Text = newMove.SzuletesiDatum;
-            txbElerhetosegEmail.Text = newMove.ElerhetosegEmail;
             if (!uresE)
             {
-                txbMagyarPontszam.Text = newMove.MagyarPontszam.ToString();
+                txbOMAzonosito.Text = newMove.OM_Azonosito;
+                txbOMAzonosito.IsReadOnly = true;
+
+            }
+            txbNev.Text = newMove.Neve;
+            txbErtesiteiCim.Text = newMove.ErtesitesiCime;
+            txbSzuletesiDatum.Text = newMove.SzuletesiDatum.ToString();
+            txbElerhetosegEmail.Text = newMove.Email;
+            if (!uresE)
+            {
+                txbMagyarPontszam.Text = newMove.Magyar.ToString();
 
             }
             if (!uresE)
             {
-                txbMatekPontszam.Text = newMove.MatekPontszam.ToString();
+                txbMatekPontszam.Text = newMove.Matematika.ToString();
 
             }
             txbTelefon.Text = newMove.Telefon;
@@ -57,42 +62,92 @@ namespace felveteli
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            newMove.OMAzonosito = txbOMAzonosito.Text;
-            newMove.Nev = txbNev.Text;
-            newMove.ErtesitesiCim = txbErtesiteiCim.Text;
-            newMove.SzuletesiDatum = txbSzuletesiDatum.Text;
-            newMove.ElerhetosegEmail = txbElerhetosegEmail.Text;
-            try
+            bool canSave = true;
+
+            if (txbNev.Text.Split(' ').Count() - 1 == 0 )
             {
-                newMove.MagyarPontszam = int.Parse(txbMagyarPontszam.Text);
+                canSave = false;
+            }
+            if (txbElerhetosegEmail.Text.Split('@').Length - 1 != 1)
+            {
 
             }
-            catch (Exception)
+            if (txbOMAzonosito.Text.Length != 11)
             {
-                newMove.MagyarPontszam = -1;
-            }
-            try
-            {
-                newMove.MatekPontszam = int.Parse(txbMatekPontszam.Text);
 
             }
-            catch (Exception)
+            if (txbErtesiteiCim.Text.Length == 0)
             {
-                newMove.MatekPontszam = -1;
-            }
-            newMove.Telefon = txbTelefon.Text;
-            newMove.Iskola = txbIskola.Text;
-            try
-            {
-                newMove.Konnyites = byte.Parse(txbKonnyites.Text);
 
             }
-            catch (Exception)
+            if (txbElerhetosegEmail.Text.Length == 0)
             {
-                newMove.Konnyites = 0;
 
             }
-            Close();
+            if (txbTelefon.Text.Length == 0)
+            {
+
+            }
+            if (txbIskola.Text.Length == 0)
+            {
+
+            }
+
+                string neve = "";
+                var nevElemek = txbNev.Text.Split(' ');
+                for (int i = 0; i < nevElemek.Length; i++)
+                {
+                    neve += (char.ToUpper(nevElemek[i][0]) + nevElemek[0].Substring(1));
+                    neve += " ";
+                }
+                txbNev.Text = neve.Trim();
+            
+
+            if (canSave)
+            {
+
+                newMove.OM_Azonosito = txbOMAzonosito.Text;
+
+                newMove.Neve = txbNev.Text;
+                newMove.ErtesitesiCime = txbErtesiteiCim.Text;
+                newMove.SzuletesiDatum = DateTime.Parse(txbSzuletesiDatum.Text);
+                newMove.Email = txbElerhetosegEmail.Text;
+                try
+                {
+                    newMove.Magyar = int.Parse(txbMagyarPontszam.Text);
+
+                }
+                catch (Exception)
+                {
+                    newMove.Magyar = -1;
+                }
+                try
+                {
+                    newMove.Matematika = int.Parse(txbMatekPontszam.Text);
+
+                }
+                catch (Exception)
+                {
+                    newMove.Matematika = -1;
+                }
+                newMove.Telefon = txbTelefon.Text;
+                newMove.Iskola = txbIskola.Text;
+                try
+                {
+                    newMove.Konnyites = byte.Parse(txbKonnyites.Text);
+
+                }
+                catch (Exception)
+                {
+                    newMove.Konnyites = 0;
+
+                }
+                Close();
+            }
+            else
+            {
+                MessageBox.Show("Hibás Formátum!");
+            }
         }
 
         private void KeyUp(object sender, KeyEventArgs e)
@@ -102,6 +157,9 @@ namespace felveteli
                 Button_Click(sender, e);
             }
         }
+
+
+
         /*
         public override void OnClosing(object sender)
         {
