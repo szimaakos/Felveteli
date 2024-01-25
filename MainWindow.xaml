@@ -20,16 +20,18 @@
 
         </Grid.RowDefinitions>
 
+
+
         <DataGrid x:Name="dtgFelveteli" Grid.ColumnSpan="5" Margin="5px">
             <DataGrid.RowStyle>
                 <Style TargetType="DataGridRow">
-                    <Setter Property="Background" Value="lightblue"/>
+                    <Setter Property="Background" Value="Lightgreen"/>
                 </Style>
             </DataGrid.RowStyle>
         </DataGrid>
 
         <Button x:Name="btnUjDiak" Grid.Row="1"  Width="150px" Content="Új Diák" FontSize="25px" Click="btnUjDiak_Click"/>
-        <Button x:Name="btnTorles" Grid.Row="1" Grid.Column="1"  Width="150px" Content="Törlés" FontSize="25px" Click="btnTorles_Click"/>
+        <Button x:Name="btnTorles"  Background="Red" Grid.Row="1" Grid.Column="1"  Width="150px" Content="Törlés" FontSize="25px" Click="btnTorles_Click"/>
         <Button x:Name="btnImport" Grid.Row="1" Grid.Column="2"  Width="150px" Content="Import" FontSize="25px" Click="btnImport_Click"/>
         <Button x:Name="btnExport" Grid.Row="1" Grid.Column="3" Width="150px" Content="Export" FontSize="25px" Click="btnExport_Click"/>
         <Button x:Name="btnModosit" Grid.Row="1" Grid.Column="4" Width="150px" Content="Módosít" FontSize="25px" Click="btnModosit_Click"/>

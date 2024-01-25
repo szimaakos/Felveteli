@@ -58,50 +58,86 @@ namespace felveteli
                 txbKonnyites.Text = newMove.Konnyites.ToString();
 
             }
+            else
+            {
+                txbKonnyites.Text = "0";
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             bool canSave = true;
 
-            if (txbNev.Text.Split(' ').Count() - 1 == 0 )
+
+
+            if (txbNev.Text.Split(' ').Count() - 1 == 0)
             {
                 canSave = false;
+                txbNev.Background = Brushes.Red;
             }
-            if (txbElerhetosegEmail.Text.Split('@').Length - 1 != 1)
+            else
             {
-
-            }
-            if (txbOMAzonosito.Text.Length != 11)
-            {
-
-            }
-            if (txbErtesiteiCim.Text.Length == 0)
-            {
-
-            }
-            if (txbElerhetosegEmail.Text.Length == 0)
-            {
-
-            }
-            if (txbTelefon.Text.Length == 0)
-            {
-
-            }
-            if (txbIskola.Text.Length == 0)
-            {
-
-            }
-
                 string neve = "";
                 var nevElemek = txbNev.Text.Split(' ');
                 for (int i = 0; i < nevElemek.Length; i++)
                 {
-                    neve += (char.ToUpper(nevElemek[i][0]) + nevElemek[0].Substring(1));
+                    neve += (char.ToUpper(nevElemek[i][0]) + nevElemek[i].Substring(1));
                     neve += " ";
                 }
                 txbNev.Text = neve.Trim();
-            
+            }
+
+            if (txbElerhetosegEmail.Text.Split('@').Length - 1 != 1 || txbElerhetosegEmail.Text.Length == 0 || txbElerhetosegEmail.Text.Split(' ').Length - 1 != 0)
+            {
+                canSave = false;
+                txbElerhetosegEmail.Background = Brushes.Red;
+            }
+
+            if (txbOMAzonosito.Text.Length != 11)
+            {
+                canSave = false;
+                txbOMAzonosito.Background = Brushes.Red;
+            }
+
+            if (txbErtesiteiCim.Text.Length == 0)
+            {
+                canSave = false;
+                txbErtesiteiCim.Background = Brushes.Red;
+            }
+
+            if (txbTelefon.Text.Length == 0)
+            {
+                canSave = false;
+                txbTelefon.Background = Brushes.Red;
+            }
+
+            if (txbIskola.Text.Length == 0)
+            {
+                canSave = false;
+                txbIskola.Background = Brushes.Red;
+            }
+            try
+            {
+                if (int.Parse(txbMatekPontszam.Text) >= 50 || int.Parse(txbMatekPontszam.Text) < -2)
+                {
+                    canSave = false;
+                    txbMatekPontszam.Background = Brushes.Red;
+                }
+                if (int.Parse(txbMagyarPontszam.Text) >= 50 || int.Parse(txbMagyarPontszam.Text) < -2)
+                {
+                    canSave = false;
+                    txbMagyarPontszam.Background = Brushes.Red;
+                }
+            }
+            catch {
+                canSave = false;
+                txbMagyarPontszam.Background = Brushes.Red;
+                txbMatekPontszam.Background = Brushes.Red;
+
+            }
+
+
+
 
             if (canSave)
             {
@@ -147,6 +183,7 @@ namespace felveteli
             else
             {
                 MessageBox.Show("Hibás Formátum!");
+                SetBackgroundColors();
             }
         }
 
@@ -158,13 +195,20 @@ namespace felveteli
             }
         }
 
-
-
-        /*
-        public override void OnClosing(object sender)
+        private void SetBackgroundColors()
         {
-            e.Cancel = true;
-            base.OnClosing(sender, e);
-        }*/
+
+            txbOMAzonosito.Background = Brushes.White;
+            txbNev.Background = Brushes.White;
+            txbErtesiteiCim.Background = Brushes.White;
+            txbElerhetosegEmail.Background = Brushes.White;
+            txbMatekPontszam.Background = Brushes.White;
+            txbMagyarPontszam.Background = Brushes.White;
+            txbTelefon.Background = Brushes.White;
+            txbIskola.Background = Brushes.White;
+            txbKonnyites.Background = Brushes.White;
+
+            txbSzuletesiDatum.Background = Brushes.White;
+        }
     }
 }
