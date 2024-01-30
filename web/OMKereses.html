@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <title>OM Azonosító Kereső</title>
+    <link rel="stylesheet" href="OM.css">
+    <link rel="stylesheet" href="navbar.css">
+    <script defer src="diakok.js"></script>
+</head>
+
+<body>
+
+    <div class="navbar">
+        <a href="/OMKereses.html"><img width="30px" height="30px" class="icon" src="search_icon.png"> OM Kereses</a>
+        <a href="filter.html" id="logo">Mini KIFIR</a>
+        <a href="/filter.html"><img src="filter_icon.png" icon> Filter</a>
+    </div>
+    <div class="search-container">
+        <input type="number" id="omIdInput" placeholder="OM Azonosító (11 számjegy)">
+        <button id="searchButton">Keresés <img class="icon-search" src="search_icon.png" width="10px" height="10px" alt=""></button>
+    </div>
+    
+    <br>
+    <table id="resultTable"></table>
+    <div id="result"></div>
+    <script src="OM.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+body {
+    font-family: Arial, sans-serif;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+    margin-left: auto;
+    margin-right: auto;
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+}
+
+.search-container {
+    text-align: center;
+}
+
+#omIdInput {
+    margin-right: 10px;
+    padding: 10px;
+    width: 250px;
+    border: 1px solid #ddd;
+}
+
+#searchButton {
+    padding: 10px;
+    background-color: #7000FF;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#searchButton:hover {
+    background-color: #08d8bc;
+    color: #white;
+}
+
+#result {
+    margin-top: 20px;
+    text-align: center;
+}
+
+table {
+    align-self: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+td {
+    padding: 10px;
+
+}
