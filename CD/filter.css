@@ -1,0 +1,30 @@
+body {
+    align-self: center;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+table {
+    margin-left: auto;
+    margin-right: auto;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    margin-top: 20px;
+}
+
+td,
+th {
+    text-align: center;
+    padding: 5px;
+}
+
+
+br {
+    margin-bottom: 20px;
+    padding: 30px;
+}
