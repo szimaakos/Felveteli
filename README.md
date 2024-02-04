@@ -1,1 +1,2 @@
-
+-Szima Ákos
+-Nagy Hunor
