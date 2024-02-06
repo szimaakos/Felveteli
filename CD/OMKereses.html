@@ -12,8 +12,7 @@
 <body>
 
     <div class="navbar">
-        <a href="/OMKereses.html"><img width="30px" height="30px" class="icon" src="search_icon.png"> OM Kereses</a>
-        <a href="filter.html" id="logo">Mini KIFIR</a>
+        <a href="/OMKereses.html"> OM Keresés</a>
         <a href="/filter.html"><img src="filter_icon.png" icon> Filter</a>
     </div>
     <div class="search-container">
@@ -21,9 +20,20 @@
     </div>
 
     <br>
-    <table id="resultTable"></table>
+    <div class="table-responsive">
+
+        <table id="resultTable"></table>
+    </div>
     <div id="result"></div>
     <script src="OM.js"></script>
 </body>
+<footer>
+    <div id="footerContent">
+        <p class="atlag">
+            Matematika átlag: <span id="matematikaAtlag"></span>
+            | Magyar átlag: <span id="magyarAtlag"></span>
+        </p>
+    </div>
+</footer>
 
 </html>

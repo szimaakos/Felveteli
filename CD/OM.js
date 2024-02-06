@@ -1,3 +1,4 @@
+let diakokFilter = [];
 omIdInput.addEventListener('input', function () {
     if (this.value.length > 11) {
         this.value = this.value.slice(0, 11);
@@ -11,10 +12,13 @@ omIdInput.addEventListener('input', function () {
     const omId = document.getElementById('omIdInput').value;
 
     searchOmIdMultiple(omId);
+    calculateAverages();
+
 });
 
 function searchOmIdMultiple(omId) {
     const results = diakok.filter(diak => diak.OM_Azonosito.includes(omId));
+    diakokFilter = results;
     console.log('Results:', results);
 
     const table = document.getElementById('resultTable');
@@ -26,19 +30,19 @@ function searchOmIdMultiple(omId) {
         Object.keys(results[0]).forEach(key => {
             console.log('Key:', key);
             const headerCell = document.createElement('th');
-            if(key == "OM_Azonosito") {
+            if (key == "OM_Azonosito") {
                 headerCell.textContent = 'OM Azonosító';
             }
-            else if(key == "Neve"){
+            else if (key == "Neve") {
                 headerCell.textContent = 'Név';
             }
-            else if(key == "ErtesitesiCime"){
+            else if (key == "ErtesitesiCime") {
                 headerCell.textContent = 'Értesítési cím';
             }
-            else if(key == "SzuletesiDatum"){
+            else if (key == "SzuletesiDatum") {
                 headerCell.textContent = 'Születési dátum';
             }
-            else{
+            else {
 
                 headerCell.textContent = key;
             }
@@ -53,11 +57,18 @@ function searchOmIdMultiple(omId) {
         results.forEach(result => {
             const tbody = document.createElement('tbody');
             const bodyRow = document.createElement('tr');
+            bodyRow.classList.add('trElement');
+            
             Object.values(result).forEach(value => {
                 const bodyCell = document.createElement('td');
                 bodyCell.textContent = value;
                 bodyRow.appendChild(bodyCell);
             });
+    
+            const invisibleCell = document.createElement('td');
+            invisibleCell.className = 'hide';
+            bodyRow.appendChild(invisibleCell);
+            
             tbody.appendChild(bodyRow);
             table.appendChild(tbody);
         });
@@ -72,3 +83,14 @@ function searchOmIdMultiple(omId) {
         console.log('No results found.');
     }
 }
+
+function calculateAverages() {
+    const matematikaSum = diakokFilter.reduce((sum, diak) => sum + Number(diak.Matematika), 0);
+    const magyarSum = diakokFilter.reduce((sum, diak) => sum + Number(diak.Magyar), 0);
+    const matematikaAvg = matematikaSum / diakokFilter.length;
+    const magyarAvg = magyarSum / diakokFilter.length;
+
+    document.getElementById("matematikaAtlag").textContent = matematikaAvg.toFixed(2);
+    document.getElementById("magyarAtlag").textContent = magyarAvg.toFixed(2);
+}
+

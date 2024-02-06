@@ -14,9 +14,12 @@ body {
         -webkit-appearance: none;
         margin: 0;
     }
+    body {
+        padding-bottom: 10px;
+    }
 
     input[type=number] {
-        -moz-appearance: textfield;
+        appearance: textfield;
     }
 }
 
@@ -55,9 +58,108 @@ table {
     margin-left: auto;
     margin-right: auto;
     padding: 5px;
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    margin-top: 20px;
+}
+
+table th,
+table td {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+}
+
+table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #dee2e6;
+}
+
+table tbody+tbody {
+    border-top: 2px solid #dee2e6;
+}
+
+@media screen and (max-width: 850px) {
+    table {
+        border: 0;
+        margin-left: 0;
+        margin-right: 0;
+        table-layout: fixed;
+        align-items: center;
+    }
+
+    table thead {
+        display: none;
+    }
+
+    table tr {
+        margin-bottom: 0.625rem;
+        display: block;
+        border-bottom: 2px solid #dee2e6;
+    }
+
+    table td {
+        display: block;
+        text-align: center;
+        font-size: 0.8em;
+        border-bottom: 1px dotted #dee2e6;
+    }
+
+    table td::before {
+        content: attr(data-label);
+        float: left;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    table td:last-child {
+        border-bottom: 0;
+    }
+
 }
 
 td {
+    text-align: center;
     padding: 10px;
+}
 
+.table-responsive {
+    overflow-x: auto;
+    margin: 0 auto;
+}
+
+@media screen and (max-width: 850px) {
+    .table-responsive {
+        padding: 0 10px;
+    }
+}
+
+.atlag-container {
+    display: flex;
+}
+
+.atlag {
+    margin-right: 10px;
+}
+
+#footerContent {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #f2f2f2;
+    padding: 10px;
+}
+.atlag{
+    margin: 0;
+}
+.trElement:hover {
+    background-color: #888888;
 }

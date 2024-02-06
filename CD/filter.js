@@ -67,6 +67,9 @@ function filterByMinimumPoints(minPoints) {
         return totalPoints >= minPoints;
     });
 }
+function filterByName(name) {
+    return database.filter(item => item.name.includes(name));
+}
 
 document.addEventListener('DOMContentLoaded', function () {
     const minPointsInput = document.getElementById('minCombinedPointsInput');
@@ -74,17 +77,32 @@ document.addEventListener('DOMContentLoaded', function () {
 
     minPointsInput.addEventListener('input', function () {
         const minPoints = Number(minPointsInput.value);
-        if (!isNaN(minPoints) && minPoints > 0) {
-            const filteredDiakok = filterByMinimumPoints(minPoints);
-            if (minPoints == null) {
-                buildTable(0);
-            }
-            else {
-                
-                buildTable(filteredDiakok);
-            }
+        const filteredDiakok = filterByMinimumPoints(minPoints);
+        if (minPoints == null) {
+            buildTable(0);
+        }
+        else {
+            buildTable(filteredDiakok);
         }
     });
 
     buildTable(diakok);
+});
+document.addEventListener('DOMContentLoaded', function () {
+    const minPointsInput = document.getElementById('minCombinedPointsInput');
+
+    minPointsInput.addEventListener('input', function () {
+        let minPoints = Number(minPointsInput.value);
+        if (minPoints > 100) {
+            minPoints = 100;
+        } else if (minPoints < -1) {
+            minPoints = 0;
+        }
+        if (minPoints == 0) {
+            minPoints = null
+        }
+        minPointsInput.value = minPoints;
+        const filteredDiakok = filterByMinimumPoints(minPoints);
+        buildTable(filteredDiakok);
+    });
 });
