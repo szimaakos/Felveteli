@@ -8,12 +8,12 @@ body {
     background-color: #f0f0f0;
     margin-left: auto;
     margin-right: auto;
-
     input::-webkit-outer-spin-button,
     input::-webkit-inner-spin-button {
         -webkit-appearance: none;
         margin: 0;
     }
+
     body {
         padding-bottom: 10px;
     }
@@ -22,7 +22,10 @@ body {
         appearance: textfield;
     }
 }
-
+input[type=number] {
+    width: 70px;
+    height: 20px;
+}
 .search-container {
     text-align: center;
 }
@@ -74,12 +77,12 @@ table th,
 table td {
     padding: 0.75rem;
     vertical-align: top;
-    border-top: 1px solid #dee2e6;
+    border-bottom: 1px solid black;
 }
 
 table thead th {
     vertical-align: bottom;
-    border-bottom: 2px solid #dee2e6;
+    border-bottom: 2px solid black
 }
 
 table tbody+tbody {
@@ -90,9 +93,10 @@ table tbody+tbody {
     table {
         border: 0;
         margin-left: 0;
-        margin-right: 0;
+        
         table-layout: fixed;
         align-items: center;
+        
     }
 
     table thead {
@@ -102,14 +106,13 @@ table tbody+tbody {
     table tr {
         margin-bottom: 0.625rem;
         display: block;
-        border-bottom: 2px solid #dee2e6;
+        border-bottom: 2px solid #165391;
     }
 
-    table td {
+    .bodyCell {
         display: block;
         text-align: center;
-        font-size: 0.8em;
-        border-bottom: 1px dotted #dee2e6;
+        border-bottom: 1px solid #c7c8c9;
     }
 
     table td::before {
@@ -122,6 +125,10 @@ table tbody+tbody {
     table td:last-child {
         border-bottom: 0;
     }
+    .mobile {
+        text-align: left;
+    }
+
 
 }
 
@@ -139,6 +146,7 @@ td {
     .table-responsive {
         padding: 0 10px;
     }
+
 }
 
 .atlag-container {
@@ -157,9 +165,27 @@ td {
     background-color: #f2f2f2;
     padding: 10px;
 }
-.atlag{
+
+.atlag {
     margin: 0;
 }
+
+.trElement{
+    border-bottom: black solid 1px;
+}
+
 .trElement:hover {
-    background-color: #888888;
+    background-color: #bebebe;
+}
+thead{
+    border-top: solid black 1px;
+}
+
+@media screen and (min-width: 850px) {
+    .mobile{
+        display: none;
+    }
+}
+.atlagSzam{
+    font-weight: bold;
 }

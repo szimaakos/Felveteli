@@ -59,15 +59,33 @@ function searchOmIdMultiple(omId) {
             const bodyRow = document.createElement('tr');
             bodyRow.classList.add('trElement');
             
-            Object.values(result).forEach(value => {
+
+            Object.entries(result).forEach(([key, value]) => {
                 const bodyCell = document.createElement('td');
-                bodyCell.textContent = value;
+                const span = document.createElement('span');
+                if (key == "OM_Azonosito") {
+                    span.textContent = 'OM Azonosító: ';
+                }
+                else if (key == "Neve") {
+                    span.textContent = 'Név: ';
+                }
+                else if (key == "ErtesitesiCime") {
+                    span.textContent = 'Értesítési cím: ';
+                }
+                else if (key == "SzuletesiDatum") {
+                    span.textContent = 'Születési dátum: ';
+                }
+                else {
+    
+                    span.textContent = key+": ";
+                }                
+                span.classList.add('mobile');
+                bodyCell.appendChild(span);
+                bodyCell.appendChild(document.createTextNode(value));
+                bodyCell.classList.add('bodyCell');
                 bodyRow.appendChild(bodyCell);
             });
-    
-            const invisibleCell = document.createElement('td');
-            invisibleCell.className = 'hide';
-            bodyRow.appendChild(invisibleCell);
+
             
             tbody.appendChild(bodyRow);
             table.appendChild(tbody);
